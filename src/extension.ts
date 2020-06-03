@@ -5,6 +5,7 @@ let outputChannel: vscode.OutputChannel;
 let rootPath = vscode.workspace.rootPath;
 let filePath = `${rootPath}/requirements.txt`;
 let packages: string[] = [];
+
 // Executed when the Extension is activated
 
 export function activate(context: vscode.ExtensionContext) {
@@ -48,8 +49,6 @@ function requirementsWatch(context: vscode.ExtensionContext) {
         .getText()
         .split("\n")
         .filter((i) => i);
-      console.log(packs);
-
       //Install Logic
       for (const pack of packs) {
         if (!packages.includes(pack)) {
@@ -70,10 +69,12 @@ function requirementsWatch(context: vscode.ExtensionContext) {
 // Installs a Package
 function installPackage(name: string) {
   packages.push(name);
-  let command = `pip3 install ${name}`;
+  let command = `pip install ${name}`;
   let installProcess = childProcess.exec(command, { cwd: rootPath });
-  logOutput(`Installing ${name}`);
+  logOutput(`Installing ${name} \n`);
+
   installProcess.stderr?.on("data", (message) => {
+  
     logOutput(message);
   });
   installProcess.stdout?.on("data", (message) => {
@@ -82,14 +83,14 @@ function installPackage(name: string) {
 }
 // Logs output to the command
 function logOutput(message: string) {
-  outputChannel.append(message);
+  outputChannel.append(message +"\n");
 }
 // Uninstalls a Package
 function unInstallPackage(name: string) {
   packages = packages.filter((item) => item !== name);
-  let command = `pip3 uninstall ${name} -y `;
+  let command = `pip uninstall ${name} -y `;
   let installProcess = childProcess.exec(command, { cwd: rootPath });
-  logOutput(`Uninstalling ${name}`);
+  logOutput(`Uninstalling ${name} \n `);
   installProcess.stderr?.on("data", (message) => {
     logOutput(message);
   });
@@ -98,7 +99,8 @@ function unInstallPackage(name: string) {
   });
 }
 
+
 // this method is called when your extension is deactivated
 export function deactivate() {
-  
+
 }

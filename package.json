@@ -3,6 +3,13 @@
 	"displayName": "Pypi Watcher",
 	"description": "A extension to watch changes in our requirements.txt file and install automatically the newly added package.",
 	"version": "0.0.1",
+	"publisher": "vichu006",
+	"repository": {
+        "type": "git",
+        "url": "https://github.com/VarthanV/pypi-watcher.git"
+	},
+	"icon":"assets/logo.png",
+
 	"engines": {
 		"vscode": "^1.45.0"
 	},
