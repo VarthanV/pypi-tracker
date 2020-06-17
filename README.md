@@ -14,7 +14,7 @@ Any time you add new entry to  **requirements.txt** (Auto Save must be enabled f
 ![Walkthroguh](./walkthrough.gif)
 
 
-## Note
+# Note
 
 Use it in a **virtual environment** or else the packages will be installed/uninstalled in the global ssite packages.
 
