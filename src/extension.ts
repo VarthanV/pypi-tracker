@@ -9,6 +9,7 @@ let packages: string[] = [];
 // Executed when the Extension is activated
 
 export function activate(context: vscode.ExtensionContext) {
+  console.log("Extension is Working");
   outputChannel = vscode.window.createOutputChannel("Pypi Watcher");
   context.subscriptions.push(outputChannel);
   getInitialPackages(context);
